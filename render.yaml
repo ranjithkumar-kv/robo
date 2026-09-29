@@ -1,0 +1,28 @@
+services:
+  # ROBO AUCTION - FULL-STACK PLATFORM (Frontend UI + Socket.io Engine + Express REST + Supabase Sync)
+  - type: web
+    name: robo-auction
+    env: node
+    buildCommand: npm run render:build
+    startCommand: npm run render:start
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HOST_PASSCODE
+        generateValue: true
+      - key: RESTORE_SNAPSHOT
+        value: "true"
+      - key: AUTO_SNAPSHOT
+        value: "true"
+      - key: SNAPSHOT_INTERVAL_MS
+        value: "15000"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
